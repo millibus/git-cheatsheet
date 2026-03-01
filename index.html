@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d1117; font-family: 'Segoe UI', sans-serif; color: #e6edf3; padding: 30px; }
+  h1 { text-align: center; font-size: 28px; margin-bottom: 6px; color: #fff; }
+  .subtitle { text-align: center; color: #8b949e; margin-bottom: 30px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 16px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .badge { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 3px 10px; font-size: 12px; font-family: monospace; color: #79c0ff; white-space: nowrap; }
+  .desc { font-size: 13px; color: #8b949e; line-height: 1.5; }
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .step { background: #1f6feb; border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; }
+  .arrow { color: #8b949e; font-size: 18px; }
+  .tip { background: rgba(31,111,235,0.1); border: 1px solid rgba(31,111,235,0.3); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #79c0ff; margin-top: 10px; }
+  .warn { background: rgba(158,106,3,0.1); border: 1px solid #d29922; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #e3b341; margin-top: 10px; }
+  .full { grid-column: 1 / -1; }
+  .divider { border: none; border-top: 1px solid #30363d; margin: 12px 0; }
+</style>
+</head>
+<body>
+<h1>🗂️ Git &amp; GitHub — Visual Cheat Sheet</h1>
+<p class="subtitle">ELI5 Edition</p>
+<div class="grid">
+  <div class="card">
+    <h2>💾 What is Git?</h2>
+    <p class="desc">A save system for code. Every commit = a snapshot you can return to. Lives <strong>on your computer</strong>.</p>
+    <hr class="divider">
+    <div class="row"><div class="badge">git init</div><div class="desc">Turn any folder into a git repo</div></div>
+    <div class="row"><div class="badge">git add .</div><div class="desc">Stage everything for saving</div></div>
+    <div class="row"><div class="badge">git commit -m "msg"</div><div class="desc">Save a snapshot with a label (-m = message)</div></div>
+    <div class="row"><div class="badge">git log</div><div class="desc">See all your saves + their IDs</div></div>
+  </div>
+  <div class="card">
+    <h2>☁️ What is GitHub?</h2>
+    <p class="desc">Where you store your git saves <strong>online</strong>. Cloud backup + sharing + CI. Git works without it.</p>
+    <hr class="divider">
+    <div class="row"><div class="badge">git push</div><div class="desc">Upload commits to GitHub</div></div>
+    <div class="row"><div class="badge">git pull</div><div class="desc">Download latest changes from GitHub</div></div>
+    <div class="row"><div class="badge">git clone &lt;url&gt;</div><div class="desc">Download an existing repo to your computer</div></div>
+  </div>
+  <div class="card full">
+    <h2>🔄 The Basic Loop</h2>
+    <div class="flow">
+      <div class="step">✏️ Write Code</div>
+      <div class="arrow">→</div>
+      <div class="step">git add</div>
+      <div class="arrow">→</div>
+      <div class="step">git commit -m</div>
+      <div class="arrow">→</div>
+      <div class="step">git push</div>
+      <div class="arrow">→</div>
+      <div class="step">☁️ GitHub</div>
+    </div>
+    <div class="tip">💡 You can stack multiple commits before pushing — they all upload at once.</div>
+  </div>
+  <div class="card">
+    <h2>⏪ Going Back in Time</h2>
+    <div class="row"><div class="badge">git checkout &lt;id&gt;</div><div class="desc">Peek at an old save (safe)</div></div>
+    <div class="row"><div class="badge">git reset --hard &lt;id&gt;</div><div class="desc">Rewind to a save, delete everything after</div></div>
+    <div class="warn">⚠️ reset --hard is permanent. Use checkout to just look around safely.</div>
+  </div>
+  <div class="card">
+    <h2>🚀 Starting a Project</h2>
+    <p class="desc" style="margin-bottom:8px"><strong>GitHub first (easiest):</strong></p>
+    <div class="flow" style="margin-bottom:12px">
+      <div class="step">Create repo on GitHub</div><div class="arrow">→</div><div class="step">git clone</div><div class="arrow">→</div><div class="step">Work</div>
+    </div>
+    <p class="desc" style="margin-bottom:8px"><strong>Local first:</strong></p>
+    <div class="flow">
+      <div class="step">git init</div><div class="arrow">→</div><div class="step">Create empty repo on GH</div><div class="arrow">→</div><div class="step">git remote add origin</div>
+    </div>
+  </div>
+  <div class="card full">
+    <h2>📥 When to git pull first</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px">
+      <div><p class="desc" style="color:#7ee787;margin-bottom:6px">✅ Just start working if...</p><p class="desc">You're solo and nothing else touches the repo</p></div>
+      <div><p class="desc" style="color:#f78166;margin-bottom:6px">⚠️ Pull first if...</p><p class="desc">Cursor, a cron job, or another person is also pushing changes</p></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
